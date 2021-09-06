@@ -12,6 +12,8 @@ namespace SecretSettings.Extensions
 
             await rewriter.Rewrite(inputDocument, outputStream);
 
+            outputStream.Seek(0, SeekOrigin.Begin);
+
             return outputStream;
         }
     }
