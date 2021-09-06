@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "dependencies": {
+    ".NETCoreApp,Version=v5.0": {
+      "AWSSDK.SecretsManager": {
+        "type": "Direct",
+        "requested": "[3.7.1.14, )",
+        "resolved": "3.7.1.14",
+        "contentHash": "B0NrDxv/d3RXvb/xZmGV849bIiYKC8QrTRz27bsOYrGcwA8ts4frLPvTlYqGQUOFmeUX8zI5DULRXHf4thykqQ==",
+        "dependencies": {
+          "AWSSDK.Core": "[3.7.3.1, 4.0.0)"
+        }
+      },
+      "AWSSDK.Core": {
+        "type": "Transitive",
+        "resolved": "3.7.3.1",
+        "contentHash": "GlBdORaC5c25QVU7P3ZiVsJXeH23HWx0ywd8g8DRL482lW1G6SJTprHCBtj8m4ZOVoiWVu2ZdxDh5QskkADisw=="
+      }
+    }
+  }
+}
