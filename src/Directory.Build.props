@@ -1,0 +1,27 @@
+<Project>
+	
+	<Import Project="../Directory.Build.props"/>
+
+	<PropertyGroup>
+		<OutputType>Library</OutputType>
+		<RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+	</PropertyGroup>
+	
+	<PropertyGroup>
+		<IsPackable>true</IsPackable>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<Authors>Chris Philips</Authors>
+		<Company>the-avid-engineer.com</Company>
+		<Copyright>2021 - 2022 © the-avid-engineer.com</Copyright>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<RepositoryUrl>https://github.com/the-avid-engineer/SecretSettings</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<NeutralLanguage>en</NeutralLanguage>
+		<PackageTags>AppSettings Secret Secrets AWS</PackageTags>
+		<Description>A way to load secrets as app settings for .NET applications.</Description>
+	</PropertyGroup>
+
+</Project>
