@@ -1,9 +1,9 @@
 ﻿namespace SecretSettings.SecretProviders.Aws;
 
-internal class AwsSecretProviderModel
+internal record AwsSecretProviderModel
 {
-    public string? SecretId { get; set; }
-    public string? VersionStage { get; set; }
-    public string? VersionId { get; set; }
-    public bool ThrowOnError { get; set; } = true;
+    public required string SecretId { get; init; }
+    public string? VersionStage { get; init; }
+    public string? VersionId { get; init; }
+    public bool ThrowOnError { get; init; } = true;
 }
