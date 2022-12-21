@@ -1,10 +1,6 @@
-﻿using System.IO;
-using System.Threading.Tasks;
+﻿namespace SecretSettings.Rewriters;
 
-namespace SecretSettings.Rewriters
+internal interface IRewriter<TDocument>
 {
-    public interface IRewriter<TDocument>
-    {
-        public Task Rewrite(TDocument inputDocument, Stream outputStream);
-    }
+    public Task Rewrite(TDocument inputDocument, Stream outputStream);
 }

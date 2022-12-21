@@ -1,7 +1,6 @@
-﻿namespace SecretSettings.SecretProviders
+﻿namespace SecretSettings.SecretProviders;
+
+internal interface ISecretProviderFactory<TSecretProviderModel>
 {
-    internal interface ISecretProviderFactory<TSecretProviderModel>
-    {
-        ISecretProvider<TSecretProviderModel> Construct();
-    }
+    ISecretProvider<TSecretProviderModel> Construct();
 }

@@ -1,39 +1,44 @@
 ﻿using Microsoft.Extensions.Configuration;
 using SecretSettings.Rewriters.Json;
 using SecretSettings.SecretProviders.Aws;
-using System;
-using System.IO;
 using System.Text.Json;
-using System.Threading.Tasks;
 
-namespace SecretSettings.Extensions
+namespace SecretSettings.Extensions;
+
+/// <summary>
+///     Extension methods for <see cref="IConfigurationBuilder"/>
+/// </summary>
+public static class ConfigurationBuilderExtensions
 {
-    public static class IConfigurationBuilderExtensions
+    /// <summary>
+    ///     Add a JSON file with secret refs to the configuration builder.
+    /// </summary>
+    /// <param name="configurationBuilder">The configuration builder.</param>
+    /// <param name="jsonSecretsFileName">The name of the JSON secrets file.</param>
+    /// <returns>The configuration builder.</returns>
+    public static IConfigurationBuilder AddJsonSecretsFile
+    (
+        this IConfigurationBuilder configurationBuilder,
+        string jsonSecretsFileName
+    )
     {
-        public static IConfigurationBuilder AddJsonSecretsFile
-        (
-            this IConfigurationBuilder configurationBuilder,
-            string jsonSecretsFileName
-        )
+        var secretsStreamTask = Task.Run(async () =>
         {
-            var secretsStreamTask = Task.Run(async () =>
-            {
-                var secretsFilePath = Path.Combine(AppContext.BaseDirectory, jsonSecretsFileName);
+            var secretsFilePath = Path.Combine(AppContext.BaseDirectory, jsonSecretsFileName);
 
-                await using var secretsFile = File.OpenRead(secretsFilePath);
+            await using var secretsFile = File.OpenRead(secretsFilePath);
 
-                var secrets = await JsonSerializer.DeserializeAsync<JsonElement>(secretsFile);
+            var secrets = await JsonSerializer.DeserializeAsync<JsonElement>(secretsFile);
 
-                var awsSecretProviderFactory = new AwsSecretProviderFactory();
+            var awsSecretProviderFactory = new AwsSecretProviderFactory();
 
-                var secretRefJsonElementRewriter = new SecretRefJsonElementRewriter(awsSecretProviderFactory);
+            var secretRefJsonElementRewriter = new SecretRefJsonElementRewriter(awsSecretProviderFactory);
 
-                return await secretRefJsonElementRewriter.RewriteAsMemoryStream(secrets);
-            });
+            return await secretRefJsonElementRewriter.RewriteAsMemoryStream(secrets);
+        });
 
-            secretsStreamTask.Wait();
+        secretsStreamTask.Wait();
 
-            return configurationBuilder.AddJsonStream(secretsStreamTask.Result);
-        }
+        return configurationBuilder.AddJsonStream(secretsStreamTask.Result);
     }
 }

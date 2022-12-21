@@ -1,11 +1,9 @@
-﻿using System.Threading.Tasks;
-using SecretSettings.Rewriters;
+﻿using SecretSettings.Rewriters;
 
-namespace SecretSettings.SecretProviders
+namespace SecretSettings.SecretProviders;
+
+internal interface ISecretProvider<TSecretProviderModel>
 {
-    internal interface ISecretProvider<TSecretProviderModel>
-    {
-        Task<TElementContainer> GetSecretObject<TElementContainer>(TSecretProviderModel secretProviderModel)
-            where TElementContainer : IElementContainer<TElementContainer>;
-    }
+    Task<TElementContainer> GetSecretObject<TElementContainer>(TSecretProviderModel secretProviderModel)
+        where TElementContainer : IElementContainer<TElementContainer>;
 }

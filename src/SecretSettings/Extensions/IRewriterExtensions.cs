@@ -1,20 +1,17 @@
 ﻿using SecretSettings.Rewriters;
-using System.IO;
-using System.Threading.Tasks;
 
-namespace SecretSettings.Extensions
+namespace SecretSettings.Extensions;
+
+internal static class IRewriterExtensions
 {
-    public static class IRewriterExtensions
+    public static async Task<MemoryStream> RewriteAsMemoryStream<TDocument>(this IRewriter<TDocument> rewriter, TDocument inputDocument)
     {
-        public static async Task<MemoryStream> RewriteAsMemoryStream<TDocument>(this IRewriter<TDocument> rewriter, TDocument inputDocument)
-        {
-            var outputStream = new MemoryStream();
+        var outputStream = new MemoryStream();
 
-            await rewriter.Rewrite(inputDocument, outputStream);
+        await rewriter.Rewrite(inputDocument, outputStream);
 
-            outputStream.Seek(0, SeekOrigin.Begin);
+        outputStream.Seek(0, SeekOrigin.Begin);
 
-            return outputStream;
-        }
+        return outputStream;
     }
 }
