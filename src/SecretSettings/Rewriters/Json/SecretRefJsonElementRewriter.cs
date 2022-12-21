@@ -47,9 +47,9 @@ namespace SecretSettings.Rewriters.Json
             {
                 var awsSecretProvider = _awsSecretProviderFactory.Construct();
 
-                var secretObject = await awsSecretProvider.GetSecretObject<JsonElement>(awsSecretProviderModel);
+                var jsonElementContainer = await awsSecretProvider.GetSecretObject<JsonElementContainer>(awsSecretProviderModel);
 
-                await RewriteAny(secretObject, jsonWriter);
+                await RewriteAny(jsonElementContainer.Value, jsonWriter);
             }
             catch
             {

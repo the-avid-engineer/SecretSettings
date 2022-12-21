@@ -1,5 +1,6 @@
 ﻿using Amazon.SecretsManager;
 using Amazon.SecretsManager.Model;
+using SecretSettings.Rewriters;
 using System;
 using System.IO;
 using System.Text;
@@ -17,7 +18,8 @@ namespace SecretSettings.SecretProviders.Aws
             _amazonSecretsManager = amazonSecretsManager;
         }
 
-        public async Task<TSecretObject?> GetSecretObject<TSecretObject>(AwsSecretProviderModel awsProviderModel)
+        public async Task<TElementContainer> GetSecretObject<TElementContainer>(AwsSecretProviderModel awsProviderModel)
+            where TElementContainer : IElementContainer<TElementContainer>
         {
             var secretRequest = new GetSecretValueRequest
             {
@@ -44,9 +46,7 @@ namespace SecretSettings.SecretProviders.Aws
                 serializedSecret = Encoding.UTF8.GetString(Convert.FromBase64String(secretBinary));
             }
 
-            var secretObject = JsonSerializer.Deserialize<TSecretObject>(serializedSecret);
-
-            return secretObject;
+            return TElementContainer.Deserialize(serializedSecret);
         }
     }
 }

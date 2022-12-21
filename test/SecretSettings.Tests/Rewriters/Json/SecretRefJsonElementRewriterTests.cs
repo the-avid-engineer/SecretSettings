@@ -41,8 +41,8 @@ namespace SecretSettings.Tests.Rewriters.Json
             var awsSecretProviderMock = new Mock<ISecretProvider<AwsSecretProviderModel>>(MockBehavior.Strict);
 
             awsSecretProviderMock
-                .Setup(provider => provider.GetSecretObject<JsonElement>(It.IsAny<AwsSecretProviderModel>()))
-                .ReturnsAsync(JsonSerializer.Deserialize<JsonElement>(JsonSerializer.Serialize(SecretValue)));
+                .Setup(provider => provider.GetSecretObject<JsonElementContainer>(It.IsAny<AwsSecretProviderModel>()))
+                .ReturnsAsync(JsonElementContainer.Deserialize(JsonSerializer.Serialize(SecretValue)));
 
             var awsSecretProviderFactoryMock = new Mock<ISecretProviderFactory<AwsSecretProviderModel>>(MockBehavior.Strict);
 
