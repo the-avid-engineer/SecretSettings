@@ -6,4 +6,9 @@ internal record AwsSecretProviderModel
     public string? VersionStage { get; init; }
     public string? VersionId { get; init; }
     public bool ThrowOnError { get; init; } = true;
+
+    internal string ToCacheKey()
+    {
+        return $"{SecretId}:{VersionStage}:{VersionId}";
+    }
 }
