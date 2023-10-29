@@ -57,15 +57,15 @@
       },
       "AWSSDK.Core": {
         "type": "Transitive",
-        "resolved": "3.7.100.21",
-        "contentHash": "yU8kCoEHA39yqFrxqlkEKANHW5Bp3n4CaAwVmZNcq+pyl9o2lK33s3N+7gpns+jvn7BRF6C8EJ4c6sqlGg9h7Q=="
+        "resolved": "3.7.204.10",
+        "contentHash": "wYTTmT2C8aik3AxQlOVTH2JpsEnprUCbmeImj04nv1bmfw/vhfh1egXX9/F4ptQF8RReMS4tWIS07csfFRG+Kg=="
       },
       "AWSSDK.SecretsManager": {
         "type": "Transitive",
-        "resolved": "3.7.100.21",
-        "contentHash": "7WliBKLQUKNJphL9LBZGsQJE8dRlmCf876hWCIvg4r+Ln97N69Rt2VVJSVLHmkhcpK8FpFRNCM+/wSPZA0nYYw==",
+        "resolved": "3.7.201.48",
+        "contentHash": "78rXjL011VO7eDWuACm2CNOFqkrpisOpsA5NKgbxGDbfOnncX0U2RYAAzBMevIQzvP2A7/OfXrl1zxL5f0M2fg==",
         "dependencies": {
-          "AWSSDK.Core": "[3.7.100.21, 4.0.0)"
+          "AWSSDK.Core": "[3.7.204.10, 4.0.0)"
         }
       },
       "Castle.Core": {
@@ -1122,7 +1122,7 @@
       "secretsettings": {
         "type": "Project",
         "dependencies": {
-          "AWSSDK.SecretsManager": "[3.7.100.21, )"
+          "AWSSDK.SecretsManager": "[3.7.201.48, )"
         }
       }
     }
