@@ -41,7 +41,7 @@ The JSON rewriter will scan for any object with exactly one property with a name
 1. `SecretId` - Required String; equivalent of the `--secret-id` option for [aws get-secret-value](https://docs.aws.amazon.com/cli/latest/reference/secretsmanager/get-secret-value.html)
 2. `VersionStage` - Optional String; equivalent of the `--version-stage` option for [aws get-secret-value](https://docs.aws.amazon.com/cli/latest/reference/secretsmanager/get-secret-value.html) (Default is `null`)
 3. `VersionId` - Optional String; equivalent of the `--version-id` option for [aws get-secret-value](https://docs.aws.amazon.com/cli/latest/reference/secretsmanager/get-secret-value.html) (Default is `null`)
-4. `ThrowOnError` - Optional Boolean - If the secret cannot be loaded, throw an exception. (Default is `true`)
+4. `Default` - Optional JSON - If the secret cannot be loaded, use this value (if provided) or throw an exception (if not provided). (Default is `null`)
 
 An example file might look like this:
 
