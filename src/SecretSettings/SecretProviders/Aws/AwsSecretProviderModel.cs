@@ -1,11 +1,13 @@
-﻿namespace SecretSettings.SecretProviders.Aws;
+﻿using System.Text.Json;
+
+namespace SecretSettings.SecretProviders.Aws;
 
 internal record AwsSecretProviderModel
 {
     public required string SecretId { get; init; }
     public string? VersionStage { get; init; }
     public string? VersionId { get; init; }
-    public bool ThrowOnError { get; init; } = true;
+    public JsonElement? Default { get; init; }
 
     internal string ToCacheKey()
     {

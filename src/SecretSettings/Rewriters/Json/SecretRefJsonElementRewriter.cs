@@ -51,10 +51,12 @@ internal class SecretRefJsonElementRewriter : JsonElementRewriter
         }
         catch
         {
-            if (awsSecretProviderModel.ThrowOnError)
+            if (!awsSecretProviderModel.Default.HasValue)
             {
                 throw;
             }
+            
+            await RewriteAny(awsSecretProviderModel.Default.Value, jsonWriter);
         }
     }
 }
